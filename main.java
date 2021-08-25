@@ -89,29 +89,34 @@ class LockerApp {
 
             case 3 :   
                 //Delete a user specified file from existing files
-                try
-                {
-                    Scanner scanner = new Scanner(System.in);
-                    System.out.print("Enter a file name: ");
-                    System.out.flush();
-                    String filename = scanner.nextLine();
-                    Files.deleteIfExists(Paths.get("D:/javaproject/AppData/"+filename));
-                }
-                catch(NoSuchFileException e)
-                {
-                    System.out.println("No such file/directory exists");
-                }
-                catch(DirectoryNotEmptyException e)
-                {
-                    System.out.println("Directory is not empty.");
-                }
-                    catch(IOException e)
-                {
-                    System.out.println("Invalid permissions.");
-                }
-                System.out.println( "Deleting file from the Application..." );  
-                //Display the result upon successful operation        
-                System.out.println("Deletion successful.");
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Enter a file name: ");
+                System.out.flush();
+                String filename = scanner.nextLine();
+                    
+               Path pathOfFile
+               = Paths.get("D:/javaproject/AppData/"+filename);
+     
+           // delete both File if file exists
+           try {
+     
+               boolean result
+                   = Files.deleteIfExists(pathOfFile);
+                System.out.println( "Deleting file from the Application..." );
+     
+               if (result)
+               //Display the result upon successful operation
+                   System.out.println("File is deleted");
+                 //Display the result upon unsuccessful operation
+               else
+                   System.out.println("File does not exists");
+           }
+           catch (IOException e) {   
+               
+               e.printStackTrace();
+           }
+                
+                
                 System.out.println( "" );
                 valid = true;
             break; 
@@ -159,7 +164,7 @@ class LockerApp {
 }
 class FindFile 
 {   
-    //int notfound=0;
+    
     public void findFile(String name,File file)
     {
         
@@ -177,24 +182,14 @@ class FindFile
                 System.out.println("Yes File is present in "+fil.getParentFile());
                 break;
             }
-            //else{
-                // notfound = 1;
-                 
-                //System.out.println("File Not Found in "+fil.getParentFile());
-            //}
+            else{
+              
+                 //Display the result upon unsuccessful operation
+                System.out.println("File Not Found");
+                break;
+            }
         }
-       //if(notfound == 1){
-           // System.out.println("File Not Found");}
+       
     }
-    //public static void main(String[] args) 
-    //{
-    //    FindFile ff = new FindFile();
-    //    Scanner scan = new Scanner(System.in);
-    //    System.out.println("Enter the file to be searched.. " );
-    //    String name = scan.next();
-        //System.out.println("Enter the directory where to search ");
-        //String directory = scan.next();
-        //ff.findFile(name,new File(directory));
-      //  ff.findFile(name,new File("D:/javaproject/AppData/"));
-    //}
+    
 }
