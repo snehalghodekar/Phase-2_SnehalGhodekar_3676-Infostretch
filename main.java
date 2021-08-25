@@ -115,12 +115,9 @@ class LockerApp {
                
                e.printStackTrace();
            }
-                
-                
                 System.out.println( "" );
                 valid = true;
-            break; 
-               
+            break;               
                 
 
             case 4 :
@@ -132,7 +129,7 @@ class LockerApp {
                 ff.findFile(name,new File("D:/javaproject/AppData/"));
                 System.out.println( "" );
                 valid = true;
-            break;                 
+            break;                
 
    
             case 5 :
