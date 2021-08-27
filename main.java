@@ -1,19 +1,20 @@
 import java.io.*;
 import java.io.File;
-//import java.util.*;
-//import java.util.Arrays;
+import java.util.*;
+import java.util.Arrays;
 //import java.util.regex.*;
 //import java.math.*;
-//import java.security.*;
-//import java.text.*;
-//import java.lang.*;
+import java.security.*;
+import java.text.*;
+import java.lang.*;
+import java.lang.String;
 import java.nio.file.*;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 class LockerApp {
-    public static void main( String []args ) throws IOException {
+    public static void main( String [] args ) throws IOException {
         boolean valid = false;
         System.out.println( "=============================================================================" );
         System.out.println( "" );
@@ -44,13 +45,27 @@ class LockerApp {
         
         switch(choice){
             case 1 :
-                System.out.println( "All files in the App" );
+                System.out.println( "All files in the App in sorted order are :" );
+                //String[] Filenames;
+                //File f = new File("D:/javaproject/AppData");
+                //Filenames = f.list();
+                //for (String Filename : Filenames) {
+                 //    System.out.println(Filename);
+                //} 
+                Sortfiles ss = new Sortfiles();  
                 String[] Filenames;
                 File f = new File("D:/javaproject/AppData");
                 Filenames = f.list();
-                for (String Filename : Filenames) {
-                     System.out.println(Filename);
-                }      
+                int n = Filenames.length;
+                ss.sortStrings(Filenames, n);
+                //System.out.println("Files in sorted order are : ");
+                List<String> list=new ArrayList<String>();  
+                for (int i = 0; i < n; i++)
+                {
+                    list.add(Filenames[i]);  
+                }
+                System.out.println(list);
+    
                 System.out.println( "" ); 
                 valid = true;
             break; 
@@ -159,6 +174,33 @@ class LockerApp {
 
         
 }
+
+class Sortfiles
+{
+  
+    //static int MAX = 100;
+  
+    void sortStrings(String[] Filenames, int n) 
+    {
+        String temp;
+  
+        // Sorting filess using bubble sort
+        for (int j = 0; j < n - 1; j++)
+        {
+            for (int i = j + 1; i < n; i++) 
+            {
+                if (Filenames[j].compareTo(Filenames[i]) > 0)
+                {
+                    temp = Filenames[j];
+                    Filenames[j] = Filenames[i];
+                    Filenames[i] = temp;
+                }
+            }
+        }
+    }
+  
+}
+
 class FindFile 
 {   
     
