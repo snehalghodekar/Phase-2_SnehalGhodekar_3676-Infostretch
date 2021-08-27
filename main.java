@@ -216,11 +216,19 @@ class FindFile
                 findFile(name,fil);
             }
             else if (name.equalsIgnoreCase(fil.getName()))
-            {
-                //Display the result upon successful operation
-                System.out.println("Yes File is present in "+fil.getParentFile());
+            {           
+                
+                if (name.equals(fil.getName()))
+                {
+                //Display the result upon case sensitive successful operation
+                System.out.println("Exact matching file found in "+fil.getParentFile() +"\\"+ name);
+                break;
+                }
+                //Display the (case insensitive) result upon successful operation
+                System.out.println("Yes, similar File is present in "+fil.getParentFile());
                 break;
             }
+            
             else{
               
                  //Display the result upon unsuccessful operation
